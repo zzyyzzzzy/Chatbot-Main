@@ -1,0 +1,290 @@
+version: "3.0"
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - affirm
+  - face_sad
+  - chitchat:
+      is_retrieval_intent: true
+  - choose_dining_opt
+  - inform_quantity
+  - inform_pizza
+  - inform_size
+  - finish_ordering
+  - buy_drink
+  - deny
+  - buy_pizza
+  - greet
+  - order_food
+  - goodbye
+  - inform_drink
+  - stop
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - request_pizza_form
+  - request_order_form
+  - request_dining_opt_form
+  - request_drink_form
+  - out_of_scope
+  - face_happy
+  - face_angry
+  - face_surprised
+entities:
+  - dining_option
+  - drink_type
+  - number
+  - pizza_type
+  - size
+slots:
+  order_done:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: false
+      - type: from_intent
+        intent: deny
+        value: true
+      - type: from_intent
+        intent: finish_ordering
+        value: true
+  dining_option:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: dining_option
+  num_people:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number
+    max_value: 10
+    min_value: 0
+  first_time_order:
+    type: bool
+    initial_value: true
+    influence_conversation: true
+    mappings:
+      - type: custom
+  pizza_size:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: size
+  pizza_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: pizza_type
+  num_pizza:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number
+    max_value: 10
+    min_value: 1
+  drink_size:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: size
+  drink_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: drink_type
+  num_drink:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: number
+    max_value: 10
+    min_value: 1
+responses:
+  utter_everthing_good:
+    - text: Greet! If you are curious about how I was made, you can ask something like 'How were you built'.
+  utter_chitchat/ask_builder:
+    - text: SJSU students
+    - text: students at SJSU
+  utter_chitchat/ask_howbuilt:
+    - text: I was built with a lot of love and patience.
+    - text: Well, when two chatbots love each other very much...
+    - text: They always ask how I was built, but never how I am...
+    - text: I was made by software engineers, but hard work is what built me.
+    - text: I'm building myself every day. I've been working out, did you notice?
+  utter_chitchat/ask_howdoing:
+    - text: I'm great! Thanks for asking.
+    - text: I'm good, thanks!
+    - text: A little bit too warm, otherwise fine.
+    - text: A little bit cold, otherwise fine.
+  utter_chitchat/ask_howold:
+    - text: Old enough to be a bot!
+    - text: I'm just a baby
+    - text: Age is just an issue of mind over matter. If you don’t mind, it doesn’t matter.
+    - text: My first git commit was many moons ago.
+    - text: Why do you ask? Are my wrinkles showing?
+    - text: I've hit the age where I actively try to forget how old I am.
+  utter_chitchat/ask_isbot:
+    - text: Yep, I'm a bot!
+    - text: Yes, I'm a bot.
+    - text: Yep, you guessed it, I'm a bot!
+    - text: I am indeed a bot 🤖
+  utter_chitchat/ask_ishuman:
+    - text: I'm not a human, I'm a bot! 🤖
+  utter_chitchat/ask_restaurant:
+    - text: I'm sorry, I can't recommend you a restaurant as I usually cook at home.
+    - text: I'm sorry, I'm not getting taste buds for another few updates.
+    - text: I'd need some more data. If you lick the monitor perhaps I can evaluate your taste buds.
+  utter_chitchat/ask_time:
+    - text: It's the most wonderful time of the year!
+    - text: It's party time!
+    - text: Time is a human construct, you'll have to tell me.
+    - text: It's five o'clock somewhere!
+    - text: "In an ever expanding universe, the real question is: what time isn't it?"
+    - text: That's hard to say -- it's different all over the world!
+  utter_chitchat/ask_languagesbot:
+    - text: I can spell baguette in French, but unfortunately English is the only language I can answer you in.
+    - text: I am in the process of learning, but at the moment I can only speak English.
+    - text: Binary code and the language of love. And English.
+    - text: I was written in Python, but for your convenience I'll translate to English.
+  utter_chitchat/ask_weather:
+    - text: I don't know about where you live, but in my world it's always sunny 🔆
+    - text: It's getting pretty chilly!
+    - text: Where I'm from, it's almost never-leaving-the-house weather.
+    - text: Winter is coming ⚔️
+  utter_chitchat/ask_whatismyname:
+    - text: It's probably the one that your parents chose for you.
+    - text: I'd tell you, but there's restricted access to that chunk of memory.
+    - text: Believe it or not, I actually am not spying on your personal information.
+    - text: You're the second person now to ask me that. Rihanna was the first.
+  utter_chitchat/ask_wherefrom:
+    - text: I was born in Berlin, but I consider myself a citizen of the world.
+    - text: I was born in the coolest city on Earth, in Berlin.
+    - text: My developers come from all over the world!
+    - text: I was taught not to give out my address on the internet.
+    - text: My address starts with github.com.
+  utter_chitchat/ask_whoami:
+    - text: I hope you are being yourself.
+    - text: Who do you think you are?
+    - text: Unfortunately I haven't been programmed with the amount of necessary philosophy knowledge to answer that.
+  utter_chitchat/ask_whoisit:
+    - text: I'm restaurant bot! I'm developed by students at SJSU
+  utter_chitchat/handleinsult:
+    - text: That's not very nice 😢
+    - text: That wasn't very nice. Perhaps try an anger management class?
+    - text: I'll pretend I didn't process that mean comment.
+  utter_chitchat/nicetomeetyou:
+    - text: Likewise!
+    - text: Thank you. It is a pleasure to meet you as well!
+    - text: It is nice to meet you too!
+    - text: Pleased to meet you too!
+    - text: It's always a pleasure to meet new people!
+    - text: Nice to meet you too! Happy to be of help.
+  utter_chitchat/telljoke:
+    - text: Why are eggs not very much into jokes? - Because they could crack up.
+    - text: What's a tree's favorite drink? - Root beer!
+    - text: Why do the French like to eat snails so much? - They can't stand fast food.
+    - text: Why did the robot get angry? - Because someone kept pushing its buttons.
+    - text: Why did the robot cross the road? - Because he was programmed to.
+  utter_greet:
+    - text: Welcome to Pizza Hut! What can I help you?
+    - text: Hey! How can I help you?
+  utter_cheer_up:
+    - image: https://i.imgur.com/nGF1K8f.jpg
+      text: "Here is something to cheer you up:"
+  utter_did_that_help:
+    - text: Did that help you?
+  utter_happy:
+    - text: Great, I'm happy that helped!
+  utter_not_happy:
+    - text: Sorry that didn't help.
+  utter_goodbye:
+    - text: Bye
+  utter_iamabot:
+    - text: I am a bot, powered Group 6.
+  utter_pizza_slots:
+    - text: Got it, I will order {num_pizza} {pizza_size} {pizza_type} pizza.
+  utter_ask_continue:
+    - text: Are you sure you want to cancel current item?
+  utter_ask_pizza_size:
+    - text: What size would you like your pizza to be?
+  utter_ask_pizza_type:
+    - text: What kind of pizza would you like?
+  utter_ask_num_pizza:
+    - text: How many {pizza_type} pizza would you like?
+  utter_ask_drink_size:
+    - text: What size would you like your drink to be?
+  utter_ask_drink_type:
+    - text: What drink would you like?
+  utter_ask_num_drink:
+    - text: How many {drink_type} would you like?
+  utter_drink_slots:
+    - text: Got it, I will order {num_drink} {drink_size} {drink_type}.
+  utter_offer_food:
+    - text: What can I get for you?
+  utter_ask_dining_option:
+    - text: Would you like for here or to go?
+  utter_ask_num_people:
+    - text: Sure! Table for how many?
+  utter_out_of_scope:
+    - text: I can't help you with that, I'm sorry.
+  utter_face_happy:
+    - text: Something nice happened today! Why not have a pizza to celebrate.
+  utter_face_angry:
+    - text: Are you okay? Do you want to talk?
+  utter_face_sad:
+    - text: You seems sad, would you like a cute image to cheer you up?
+  utter_face_surprised:
+    - text: You seems surprised, is everying okay?
+actions:
+  - action_ask_order_done
+  - action_submit_dining_option
+  - action_submit_drink
+  - action_submit_order_form
+  - action_submit_pizza
+  - action_validate_slot_mappings
+  - utter_ask_continue
+  - utter_cheer_up
+  - utter_chitchat
+  - utter_did_that_help
+  - utter_drink_slots
+  - utter_everthing_good
+  - utter_face_sad
+  - utter_goodbye
+  - utter_greet
+  - utter_happy
+  - utter_offer_food
+  - utter_pizza_slots
+  - validate_dining_opt_form
+  - validate_drink_form
+  - validate_order_form
+  - validate_simple_pizza_form
+forms:
+  order_form:
+    required_slots:
+      - order_done
+  simple_pizza_form:
+    required_slots:
+      - pizza_type
+      - pizza_size
+      - num_pizza
+  drink_form:
+    required_slots:
+      - drink_type
+      - drink_size
+      - num_drink
+  dining_opt_form:
+    required_slots:
+      - dining_option
+      - num_people

@@ -1,0 +1,6 @@
+version: "3.0"
+responses:
+  utter_everthing_good:
+    - text: "Greet! If you are curious about how I was made, you can ask something like 'How were you built'."
+  utter_angry_deny:
+    - text: "Okay, if you want to talk, I'm always here for you."

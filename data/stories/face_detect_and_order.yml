@@ -1,0 +1,78 @@
+version: "3.0"
+
+stories:
+  - story: face detected sad, the picture helped
+    steps:
+      - intent: face_sad
+      - action: utter_face_sad
+      - intent: affirm
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+      - intent: buy_pizza
+        entities:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - requested_slot: dining_option
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null

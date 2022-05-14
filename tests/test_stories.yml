@@ -1,0 +1,125 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+stories:
+  - story: buy one pizza (one pizza order)
+    steps:
+      - user: |
+          hi
+        intent: greet
+      - action: utter_greet
+      - user: |
+          do you have pizzas
+        intent: buy_pizza
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - user: |
+          [to go]{"entity": "dining_option"}
+        intent: choose_dining_opt
+      - action: dining_opt_form
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - user: |
+          can I have a [Hawaiian Chicken]{"entity": "pizza_type"} pizza
+        intent: buy_pizza
+      - action: simple_pizza_form
+      - user: |
+          [large]{"entity": "size"}
+        intent: inform_size
+      - action: simple_pizza_form
+      - user: |
+          three
+        intent: inform_quantity
+      - action: simple_pizza_form
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - action: order_form
+      - active_loop: order_form
+      - user: |
+          thats it
+        intent: finish_ordering
+      - action: order_form
+      - active_loop: null
+      - action: action_submit_order_form
+      - action: action_listen
+
+  - story: buy one drink (one drink order)
+    steps:
+      - user: |
+          hi
+        intent: greet
+      - action: utter_greet
+      - user: |
+          can i have a [large]{"entity": "size"} [coke]{"entity": "drink_type"}
+        intent: buy_drink
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - user: |
+          [to go]{"entity": "dining_option"}
+        intent: choose_dining_opt
+      - action: dining_opt_form
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: drink_form
+      - active_loop: drink_form
+      - user: |
+          3
+        intent: inform_quantity
+      - slot_was_set:
+          - num_drink: 3
+      - action: drink_form
+      - active_loop: null
+      - action: utter_drink_slots
+      - action: action_submit_drink
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - drink_type: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - user: |
+          thats it
+        intent: finish_ordering
+      - slot_was_set:
+          - order_done: true
+      - action: order_form
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+      - action: action_listen
+
+  - story: dine in (in one sentence)
+    steps:
+      - user: |
+          can i order
+        intent: order_food
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - user: |
+          [for here]{"entity": "dining_option"}
+        intent: choose_dining_opt
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - user: |
+          2
+        intent: inform_quantity
+      - action: dining_opt_form
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: action_listen

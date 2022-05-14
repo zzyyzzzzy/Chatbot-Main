@@ -1,0 +1,118 @@
+version: "3.0"
+
+rules:
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: chitchat response
+    steps:
+      - intent: chitchat
+      - action: utter_chitchat
+
+  - rule: out of scope
+    steps:
+      - intent: out_of_scope
+      - action: utter_out_of_scope
+
+  # - rule: Activate Pizza Form
+  #   steps:
+  #     - intent: buy_pizza
+  #     - action: simple_pizza_form
+  #     - active_loop: simple_pizza_form
+
+  - rule: Submit Pizza Form
+    condition:
+      - active_loop: simple_pizza_form
+    steps:
+      - action: simple_pizza_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+
+  # - rule: Activate Drink Form
+  #   steps:
+  #     - intent: buy_drink
+  #     - action: drink_form
+  #     - active_loop: drink_form
+  # - rule: Submit Drink Form
+  #   condition:
+  #     - active_loop: drink_form
+  #   steps:
+  #     - action: drink_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     - action: utter_drink_slots
+  #     - action: action_submit_drink
+  - rule: Interruption in Pizza Form
+    condition:
+      # Condition that form is active.
+      - active_loop: simple_pizza_form
+    steps:
+      # This unhappy path handles the case of an intent `bot_challenge`.
+      - intent: bot_challenge
+      - action: utter_iamabot
+      # Return to form after handling the `bot_challenge` intent
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+
+    # add order form
+  # - rule: Activate Order Form
+  #   steps:
+  #     - intent: order_food
+  #     - action: utter_offer_food
+  #     - action: order_form
+  #     - active_loop: order_form
+
+  - rule: Submit Order Form
+    condition:
+      - active_loop: order_form
+    steps:
+      - action: order_form
+      - active_loop: null
+      - slot_was_set:
+          - requested_slot: null
+      - action: action_submit_order_form
+  # - action: utter_order_slots
+
+  # add dining opt form
+  # - rule: Activate Dining Option Form
+  #   steps:
+  #     - intent: choose_dining_opt
+  #     - action: dining_opt_form
+  #     - active_loop: dining_opt_form
+
+  # - rule: Submit  Dining Option Form
+  #   condition:
+  #     - active_loop: dining_opt_form
+  #   steps:
+  #     - action: dining_opt_form
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     - action: action_submit_dining_option
+  - rule: face detected happy
+    steps:
+      - intent: face_happy
+      - action: utter_face_happy
+  - rule: face detected sad
+    steps:
+      - intent: face_sad
+      - action: utter_face_sad
+  - rule: face detected surprised
+    steps:
+      - intent: face_surprised
+      - action: utter_face_surprised
+  - rule: face detected angry
+    steps:
+      - intent: face_angry
+      - action: utter_face_angry

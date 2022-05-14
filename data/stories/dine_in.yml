@@ -1,0 +1,64 @@
+version: "3.0"
+
+stories:
+  - story: dine in (in one sentence)
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: choose_dining_opt
+        entities:
+          - dining_option: table for
+          - number: 3
+      - slot_was_set:
+          - dining_option: table for
+      - slot_was_set:
+          - num_people: 3
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - dining_option: dine in
+      - slot_was_set:
+          - num_people: 3
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - num_people: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - num_drink: null
+
+  - story: dine in (in two sentence)
+    steps:
+      - intent: choose_dining_opt
+        entities:
+          - dining_option: table for
+          - dining_option: dine in
+      - slot_was_set:
+          - dining_option: dine in
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - dining_option: dine in
+      - slot_was_set:
+          - requested_slot: num_people
+      - slot_was_set:
+          - num_people: 4
+      - slot_was_set:
+          - num_people: 4
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - num_people: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - num_drink: null

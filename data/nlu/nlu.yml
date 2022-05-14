@@ -1,0 +1,237 @@
+version: "3.0"
+nlu:
+  - intent: greet
+    examples: |
+      - hey
+      - hello
+      - hi
+      - hello there
+      - good morning
+      - good evening
+      - moin
+      - hey there
+      - let's go
+      - hey dude
+      - goodmorning
+      - goodevening
+      - good afternoon
+      - yo
+      - hello world
+      - hi there
+  - intent: goodbye
+    examples: |
+      - cu
+      - good by
+      - cee you later
+      - good night
+      - bye
+      - goodbye
+      - have a nice day
+      - see you around
+      - bye bye
+      - see you later
+      - thanks, goodbye
+  - intent: affirm
+    examples: |
+      - yes
+      - y
+      - indeed
+      - of course
+      - that sounds good
+      - correct
+      - affirm
+  - intent: deny
+    examples: |
+      - no
+      - n
+      - never
+      - I don't think so
+      - don't like that
+      - no way
+      - not really
+      - never mind
+  - intent: mood_great
+    examples: |
+      - perfect
+      - great
+      - amazing
+      - feeling like a king
+      - wonderful
+      - I am feeling very good
+      - I am great
+      - I am amazing
+      - I am going to save the world
+      - super stoked
+      - extremely good
+      - so so perfect
+      - so good
+      - so perfect
+  - intent: mood_unhappy
+    examples: |
+      - my day was horrible
+      - I am sad
+      - I don't feel very well
+      - I am disappointed
+      - super sad
+      - I'm so sad
+      - sad
+      - very sad
+      - unhappy
+      - not good
+      - not very good
+      - extremly sad
+      - so saad
+      - so sad
+  - intent: stop
+    examples: |
+      - stop
+      - nevermind
+      - please stop
+      - i want to stop
+      - stop the form
+  - intent: bot_challenge
+    examples: |
+      - are you a bot?
+      - are you a human?
+      - am I talking to a bot?
+      - am I talking to a human?
+  - intent: buy_pizza
+    examples: |
+      - i'd like to buy a pizza
+      - i need to order a pizza
+      - i want a pizza
+      - can i buy a pizza
+      - i want to buy a pizza
+      - can i have a [small](size) [mozerella](pizza_type) pizza
+      - a [large](size) [pepperoni](pizza_type) pizza please
+      - can i have a [large](size) [pepperoni](pizza_type) pizza
+      - can i have a [hawaii](pizza_type) pizza
+      - can i have a pizza
+      - can i have a [large](size) pizza
+      - can i have a [pepperoni](pizza_type) pizza
+      - i want a [cheese](pizza_type) pizza
+      - a [hawaii chicken](pizza_type) please
+      - give me a [hawaiian chicken](pizza_type)
+      - can i have a pizza [to go](dining_option)
+      - can i have a [veggie](pizza_type) pizza
+      - can i have a [cheese](pizza_type) pizza
+      - do you have [hawaii chickens](pizza_type) pizza
+      - Can I have a [Hawaiian Chicken](pizza_type) pizza
+  - intent: inform_pizza
+    examples: |
+      - i'd like a [large](size) pizza
+      - i want to order a [xl](size) [hawai](pizza_type) pizza
+      - [medium](size) pizza
+      - [pepperoni](pizza_type)
+      - give me a [mozerella](pizza_type) pizza
+      - [hawaii](pizza_type) pizza
+      - [small](size) [veggie](pizza_type) pizza
+      - [hawaii](pizza_type)
+      - i want a [large](size) pizza
+      - [mozzarella](pizza_type)
+      - [hawai](pizza_type)
+      - [veggie](pizza_type)
+      - [hawiii](pizza_type)
+      - [small](size) [cheese](pizza_type)
+      - [cheese](pizza_type)
+      - [hawaii chicken](pizza_type)
+      - [hawaiian chicken](pizza_type)
+      - i want a [veggie](pizza_type) pizza
+  - intent: order_food
+    examples: |
+      - I would like to order
+      - I want to oder
+      - can i order
+      - i need to order for [to go](dining_option)
+      - can i order for [to go](dining_option)
+      - i would like order [to go](dining_option)
+      - I need to order [to go](dining_option)
+      - i need order for [to go](dining_option)
+      - i need to order [to go](dining_option)
+  - intent: finish_ordering
+    examples: |
+      - That would be it
+      - That's it
+      - That's all
+      - that's it
+      - thats all
+      - i m done
+      - thats it
+  - intent: buy_drink
+    examples: |
+      - i'd like a [large](size) [coke](drink_type)
+      - can i have a drink
+      - buy drink
+      - i want to have a [medium](size) [coke](drink_type)
+      - Can i have a [sprite](drink_type)
+      - can i have a [coke](drink_type)
+      - a [large](size) [coke](drink_type)
+      - can i have a [large](size) [sprite](drink_type)
+      - can i have a [large](size) [coke](drink_type)
+      - i want two [medium](size) [sprite](drink_type)
+      - a drink [to go](dining_option)
+      - can i have a [large](size) [coke](drink_type)
+  - intent: inform_drink
+    examples: |
+      - [sprite](drink_type)
+      - [large](size) soda
+      - [fanta](drink_type) please
+      - [small](size) [sprite](drink_type) please
+      - [large](size) [fanta](drink_type)
+      - i would like to have a [large](size) [fanta](drink_type)
+  - intent: choose_dining_opt
+    examples: |
+      - i'd like to [dine in](dining_option)
+      - [to go](dining_option)
+      - [dine in](dining_option)
+      - [to go](dining_option) please
+      - [for here](dining_option)
+      - i need a [table for](dining_option) three
+      - i need a [table for](dining_option) two
+      - [table for](dining_option) three
+      - can i have a [table for](dining_option) three
+      - i need a [table for](dining_option) [dine in](dining_option)
+      - can i have a [table](dining_option)
+      - can i [dine in](dining_option)
+  - intent: inform_quantity
+    examples: |
+      - two please
+      - just one
+      - three
+      - 3
+      - 5
+      - four
+      - one
+      - give me three
+      - two
+      - 1
+  - intent: inform_size
+    examples: |
+      - [xl](size)
+      - [small](size)
+      - [large](size)
+      - [medium](size)
+      - [s](size)
+      - [small](size) please
+      - [medium](size)
+  - intent: thankyou
+    examples: |
+      - thank you
+      - thank you very much
+      - thanks for your help
+      - i appreciate that
+      - thanks
+
+  # trigger words
+  - intent: face_happy
+    examples: |
+      - ##happy
+  - intent: face_sad
+    examples: |
+      - ##sad
+  - intent: face_surprised
+    examples: |
+      - #surprised
+  - intent: face_angry
+    examples: |
+      - #angry

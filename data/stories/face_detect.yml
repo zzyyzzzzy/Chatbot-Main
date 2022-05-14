@@ -1,0 +1,56 @@
+version: "3.0"
+
+stories:
+  - story: face detected happy
+    steps:
+      - intent: face_happy
+      - action: utter_face_happy
+  - story: face detected sad, the picture helped
+    steps:
+      - intent: face_sad
+      - action: utter_face_sad
+      - intent: affirm
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+  - story: face detected sad, the picture did not help
+    steps:
+      - intent: face_sad
+      - action: utter_face_sad
+      - intent: affirm
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_not_happy
+  - story: face detected sad, the picture did not help v2
+    steps:
+      - intent: face_sad
+      - action: utter_face_sad
+      - intent: affirm
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_not_happy
+      - intent: greet
+      - action: utter_greet
+  - story: face detected surprised
+    steps:
+      - intent: face_surprised
+      - action: utter_face_surprised
+      - intent: affirm
+      - action: utter_everthing_good
+      - intent: chitchat
+      - action: utter_chitchat
+
+  - story: face detected surprised
+    steps:
+      - intent: face_surprised
+      - action: utter_face_surprised
+      - intent: affirm
+      - action: utter_everthing_good
+
+  - story: face detected angry
+    steps:
+      - intent: face_angry
+      - action: utter_face_angry

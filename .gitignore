@@ -1,0 +1,8 @@
+.rasa
+.DS_Store
+story_graph.dot
+rasa.db
+actions/__pycache__
+graph.html
+tensorboard
+results

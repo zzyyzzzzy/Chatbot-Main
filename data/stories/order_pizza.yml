@@ -1,0 +1,524 @@
+version: "3.0"
+
+stories:
+  - story: Start with buy pizza (one pizza order)
+    steps:
+      - intent: buy_pizza
+        entities:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - requested_slot: dining_option
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+
+  - story: Start with pizza (one pizza order with no type specified first)
+    steps:
+      - intent: buy_pizza
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - requested_slot: dining_option
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - num_people: 0
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - requested_slot: pizza_type
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_people: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - num_pizza: 2
+      - slot_was_set:
+          - num_pizza: 2
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+
+  - story: Start with to go (one pizza order v1)
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: order_food
+        entities:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - intent: buy_pizza
+        entities:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - pizza_type: pepperoni
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Start with to go  (one pizza order v1 - no greet)
+    steps:
+      - intent: order_food
+        entities:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - intent: buy_pizza
+        entities:
+          - pizza_type: hawaiian chicken
+      - slot_was_set:
+          - pizza_type: hawaiian chicken
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: hawaiian chicken
+      - slot_was_set:
+          - pizza_type: hawaiian chicken
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - pizza_size: large
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+
+  - story: Start with to go (one pizza order v2)
+    steps:
+      - intent: order_food
+        entities:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - intent: buy_pizza
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - requested_slot: pizza_type
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_pizza: 4
+      - slot_was_set:
+          - num_pizza: 4
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+  - story: Order two pizza
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: buy_pizza
+        entities:
+          - pizza_type: veggie
+      - slot_was_set:
+          - pizza_type: veggie
+      - action: dining_opt_form
+      - active_loop: dining_opt_form
+      - slot_was_set:
+          - requested_slot: dining_option
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - dining_option: to go
+      - slot_was_set:
+          - num_people: 0
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_dining_option
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: veggie
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - pizza_size: medium
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_people: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - num_pizza: 1
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - intent: buy_pizza
+        entities:
+          - pizza_type: cheese
+      - slot_was_set:
+          - pizza_type: cheese
+      - action: simple_pizza_form
+      - active_loop: simple_pizza_form
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - pizza_type: cheese
+      - slot_was_set:
+          - requested_slot: pizza_size
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - pizza_size: small
+      - slot_was_set:
+          - requested_slot: num_pizza
+      - slot_was_set:
+          - num_people: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - num_pizza: 3
+      - slot_was_set:
+          - num_pizza: 3
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: utter_pizza_slots
+      - action: action_submit_pizza
+      - slot_was_set:
+          - pizza_size: null
+      - slot_was_set:
+          - pizza_type: null
+      - slot_was_set:
+          - num_pizza: null
+      - slot_was_set:
+          - drink_size: null
+      - slot_was_set:
+          - num_drink: null
+      - slot_was_set:
+          - first_time_order: false
+      - action: order_form
+      - active_loop: order_form
+      - slot_was_set:
+          - requested_slot: order_done
+      - slot_was_set:
+          - first_time_order: false
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - order_done: true
+      - slot_was_set:
+          - requested_slot: null
+      - active_loop: null
+      - action: action_submit_order_form
+      - slot_was_set:
+          - first_time_order: true
+      - slot_was_set:
+          - dining_option: null
+      - slot_was_set:
+          - order_done: null
+
+  # - story: interactive_story_1
+  #   steps:
+  #     - intent: greet
+  #     - action: utter_greet
+  #     - intent: buy_pizza
+  #     - action: simple_pizza_form
+  #     - active_loop: simple_pizza_form
+  #     - slot_was_set:
+  #         - requested_slot: pizza_size
+  #     - slot_was_set:
+  #         - pizza_size: s
+  #     - slot_was_set:
+  #         - pizza_size: s
+  #     - slot_was_set:
+  #         - requested_slot: pizza_type
+  #     - intent: stop
+  #     - action: utter_ask_continue
+  #     - intent: affirm
+  #     - action: action_deactivate_loop
+  #     - active_loop: null
+  #     - slot_was_set:
+  #         - requested_slot: null
+  #     - intent: goodbye
+  #     - action: utter_goodbye

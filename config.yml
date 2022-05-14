@@ -1,0 +1,42 @@
+language: en
+
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 2
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 50
+    constrain_similarities: true
+    model_confidence: softmax
+    evaluate_on_number_of_examples: 40 # numer the classes: 20
+    evaluate_every_number_of_epochs: 2
+    tensorboard_log_directory: "./tensorboard/DIET"
+    tensorboard_log_level: "epoch"
+    regularization_constant: 0.01
+
+  - name: DucklingEntityExtractor
+    url: "http://localhost:8000"
+    dimensions: ["number", "date"]
+    timeout: 3
+
+  - name: ResponseSelector
+    retrieval_intent: chitchat
+    scale_loss: false
+    epochs: 100
+
+policies:
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+    max_history: 5
+    epochs: 50
+    constrain_similarities: true
+    evaluate_on_number_of_examples: 32 # number of class: 16
+    evaluate_every_number_of_epochs: 2
+    tensorboard_log_directory: "./tensorboard/TED"
+    tensorboard_log_level: "epoch"
+  - name: RulePolicy
